@@ -41,8 +41,7 @@ namespace NWVDNUGMeetup
 			var dataDoc = XDocument.Parse(rssString);
 
 			var result = new MeetingListInfo ();
-			var channelNode = dataDoc.Descendants ().First (n =>
-				n.Name.ToString () == "channel");
+			var channelNode = GetChildNode( dataDoc.Root, "channel");
 
 			result.Title = GetNodeValueAsString (channelNode, "title");
 			result.Description = GetNodeValueAsString (channelNode, "description");
@@ -51,18 +50,30 @@ namespace NWVDNUGMeetup
 			return result;
 		}
 
-		private string GetNodeValueAsString(XElement searchRootNode, string childNodeName)
+		private XElement GetChildNode(XElement searchRootNode, string childNodeName)
 		{
 			var foundNode =  searchRootNode.Descendants ().FirstOrDefault (n =>
 				n.Name.ToString () == childNodeName);
 
 			if (foundNode!=null) {
-				return  foundNode.Value;
+				return  foundNode;
+			} 
+			else {
+				return null;
+			}
+		}
+
+		private string GetNodeValueAsString(XElement searchRootNode, string childNodeName)
+		{
+			var foundNode = GetChildNode (searchRootNode, childNodeName);
+
+			if (foundNode!=null) {
+				return foundNode.Value;
 			} 
 			else {
 				return string.Empty;
 			}
 		}
-	}
+		}
 }
 
