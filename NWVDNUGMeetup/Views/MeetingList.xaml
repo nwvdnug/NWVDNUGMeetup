@@ -4,10 +4,27 @@
 		<StackLayout 
 		  VerticalOptions="LayoutOptions.StartAndExpand"
 		  Padding="5,20,5,5"
+		  Spacing="0"
 		  >
 		  	<Image Source="NWVDNUG_logo.jpg"/>
-			<Label Text="{Binding Title}"></Label>
-			<Label Text="{Binding Link}"></Label>
+		  	<BoxView Color="Color.Accent"
+		  		HeightRequest="2"
+		  		WidthRequest="5000"
+		  		HorizontalOptions="StartAndExpand"/>
+			<Label Text="{Binding Title}"/>
+			<Label Text="{Binding Link}"/>
+		  	<BoxView Color="Color.Accent"
+		  		HeightRequest="2"
+		  		WidthRequest="5000"
+		  		HorizontalOptions="StartAndExpand"/>
+		  	<ListView ItemsSource="{Binding Meetings}">
+		  		<ListView.ItemTemplate>
+			  		<DataTemplate>
+			  			<TextCell Text="{Binding Title}"
+			  				Detail="{Binding Description}">hi</TextCell>
+			  		</DataTemplate>
+		  		</ListView.ItemTemplate>
+		  	</ListView>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

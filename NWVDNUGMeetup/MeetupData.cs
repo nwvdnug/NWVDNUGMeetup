@@ -46,7 +46,7 @@ namespace NWVDNUGMeetup
 			result.Title = GetNodeValueAsString (channelNode, "title");
 			result.Description = GetNodeValueAsString (channelNode, "description");
 			result.Link = GetNodeValueAsString (channelNode, "link");
-
+			result.Meetings = GetMeetings (channelNode);
 			return result;
 		}
 
@@ -74,6 +74,23 @@ namespace NWVDNUGMeetup
 				return string.Empty;
 			}
 		}
+
+		private MeetingInfo[] GetMeetings(XElement rootNode)
+		{
+			if (rootNode.Descendants().Any(d=>d.Name=="item")) {
+				return rootNode.Descendants ()
+					.Where (d => d.Name == "item")
+					.Select (i => {
+						var mi = new MeetingInfo ();
+						mi.Title = GetNodeValueAsString (i, "title");
+						mi.Description = GetNodeValueAsString(i, "description");
+						return mi;
+				}).ToArray ();
+						
+			} else {
+				return new MeetingInfo[0];
+			}
 		}
+	}
 }
 
