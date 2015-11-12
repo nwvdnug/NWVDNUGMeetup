@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace NWVDNUGMeetup
+namespace NWVDNUGMeetup.Views
 {
 	public partial class MeetingList : ContentPage
 	{
