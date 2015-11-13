@@ -17,11 +17,25 @@
 		  		HeightRequest="2"
 		  		WidthRequest="5000"
 		  		HorizontalOptions="StartAndExpand"/>
-		  	<ListView ItemsSource="{Binding Meetings}">
+		  	<ListView ItemsSource="{Binding Meetings}"
+		  		Padding="1,15,1,1"
+		  		VerticalOptions="StartAndExpand"
+		  		HorizontalOptions="StartAndExpand">
 		  		<ListView.ItemTemplate>
 			  		<DataTemplate>
+<!--			  			<ViewCell>
+				  			<StackLayout Orientation="Vertical"
+				  				Padding="2, 2,0,0"
+				  				>
+									<Label Text="{Binding Title}"/>
+									<Label Text="{Binding PermaLink}" 
+										LineBreakMode="WordWrap"
+										HorizontalOptions="StartAndExpand"
+										VerticalOptions="StartAndExpand"/>
+				  			</StackLayout>
+			  			</ViewCell>-->
 			  			<TextCell Text="{Binding Title}"
-			  				Detail="{Binding Description}">hi</TextCell>
+			  				Detail="{Binding PermaLink}"/>
 			  		</DataTemplate>
 		  		</ListView.ItemTemplate>
 		  	</ListView>

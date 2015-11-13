@@ -84,6 +84,7 @@ namespace NWVDNUGMeetup
 						var mi = new MeetingInfo ();
 						mi.Title = GetNodeValueAsString (i, "title");
 						mi.Description = GetNodeValueAsString(i, "description");
+						mi.PermaLink = GetNodeValueAsString(i, "guid");
 						return mi;
 				}).ToArray ();
 						
